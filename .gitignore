@@ -1,0 +1,10 @@
+# Ignore everything
+*
+
+# But NOT these:
+!.gitignore
+!README.md
+!1-MySirG-lectures/
+
+# Allow all files inside this folder
+!1-MySirG-lectures/**

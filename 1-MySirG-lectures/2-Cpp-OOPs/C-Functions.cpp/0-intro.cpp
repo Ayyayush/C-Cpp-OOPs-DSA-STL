@@ -1,0 +1,5 @@
+/*
+program ke andar function banane se better memory utilisation hota h
+specially tab jab koi function baar baar call ho rha h 
+function ko memory sirf tab milit h jab usko call kiya ho
+*/
