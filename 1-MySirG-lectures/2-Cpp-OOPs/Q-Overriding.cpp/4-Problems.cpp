@@ -64,7 +64,6 @@ class A
     }
       
        
-       
 };
 class B: virtual public A       // virtual likhne se A class ke members do baar count nhi honge
 {
@@ -87,3 +86,81 @@ int main()
 }
 
 
+
+
+
+
+#include<iostream>
+using namespace std;
+
+class A
+{
+public:
+
+    // Virtual Function
+    // Tells the compiler:
+    // "Do not perform Early Binding for this function.
+    // Decide at Runtime based on the actual object."
+    virtual void f1()
+    {
+        cout<<"f1 of A"<<endl;
+    }
+};
+
+class B : public A
+{
+public:
+
+    // Function Overriding
+    // Same name + Same prototype as Base Class
+    // Since A::f1() is virtual,
+    // B::f1() automatically becomes virtual.
+    // No need to write 'virtual' again.
+    void f1()
+    {
+        cout<<"f1 of B"<<endl;
+    }
+
+    void f2()
+    {
+        cout<<"f2 of B"<<endl;
+    }
+};
+
+int main()
+{
+    A *obj1;          // Base Class Pointer
+    B obj2;           // Derived Class Object
+
+    obj1=&obj2;       // ! Allowed Base Class pointer can point to a Derived Class object.
+
+    obj2.f1();
+    // Compiler first searches class B.
+    // f1() is found in B.
+    // Hence B::f1() is executed.
+
+    obj1->f1();
+    // Pointer TYPE = A*
+    // Actual OBJECT = B
+    // ! Since f1() is virtual,compiler does NOT perform Early Binding.
+    // It postpones the decision until Runtime.
+    // At Runtime, program checks the actual object.
+    // Actual object belongs to class B.
+    // Therefore B::f1() is executed.
+    // This is Dynamic (Late) Binding.
+    // Hence Runtime Polymorphism is achieved.
+
+    // ! obj1->f2();   ERROR
+    // Dynamic Binding works only for
+    // overridden virtual functions.
+    // f2() is not present in class A.
+    // Compiler searches only class A
+    // because pointer type is A*.
+    // Hence compilation error.
+
+    obj2.f2();
+    // Compiler searches class B. f2() is found in B.
+    // Hence B::f2() is executed.
+
+    return 0;
+}

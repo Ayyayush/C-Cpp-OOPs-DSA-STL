@@ -10,10 +10,10 @@ class complex
 
     public :
 // IMPLICIT DESTRUCTOR MEIN NO BODY NO ARGUEMENT HOTA H
+// ! yha hum explicit destructor bna rhe h
    ~complex()
     {
-    
-        cout<<"Hello"<<endl;
+           cout<<"Hello"<<endl;
          // jitne object hai utni baar call ho rha h
           // ye member function chalne ke baad chalta h 
     }

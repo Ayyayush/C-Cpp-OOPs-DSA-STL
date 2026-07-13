@@ -74,3 +74,111 @@ int main()
 
     return 0;
 }
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+// Exception Handling using try-catch
+void f1()
+{
+    int age,vote;
+
+    try
+    {
+        cout<<"Enter your age : ";
+        cin>>age;
+
+        if(age<18)
+            throw 1;          // Throw an exception.
+                              // Code after throw is NOT executed.
+
+        cout<<"\nVote for your favorite actor";
+        cout<<"\n1. Amir Khan";
+        cout<<"\n2. Shahrukh Khan";
+        cout<<"\n3. Akshay Kumar";
+        cout<<"\nEnter your choice : ";
+        cin>>vote;
+
+        cout<<"\nThank you for your vote"<<endl;
+    }
+    catch(int e)
+    {
+        // Control comes here if exception is thrown.
+        cout<<"You are not eligible to cast your vote"<<endl;
+    }
+}
+
+// Throwing exception without try
+void f2()
+{
+    int balance=5000,amt;
+
+    cout<<"Enter amount to withdraw : ";
+    cin>>amt;
+
+    if(amt>balance)
+        throw 1;              // Exception can be thrown without try.
+
+    // If exception is thrown,
+    // remaining statements are skipped.
+
+    balance-=amt;
+    cout<<"New Balance = "<<balance<<endl;
+}
+
+// User-defined Exception Class
+class InvalidAge
+{
+};
+
+void f3()
+{
+    int age;
+
+    cout<<"Enter age : ";
+    cin>>age;
+
+    if(age<18)
+        throw InvalidAge();   // Throwing an object.
+
+    cout<<"Eligible"<<endl;
+}
+
+int main()
+{
+    f1();
+    try
+    {
+        int a,b;
+        cout<<"\nEnter two numbers : ";
+        cin>>a>>b;
+        if(b==0)
+            throw 1;          // Primitive type exception.
+        cout<<"Result = "<<a/b<<endl;
+    }
+    catch(int e)
+    {
+        cout<<"Runtime Error : Division by Zero"<<endl;
+    }
+
+    try  // ! f2() has no try block.  Therefore, catch is written here.
+    {
+        f2();
+    }
+    catch(int e)
+    {
+        cout<<"Insufficient Balance"<<endl;
+    }
+
+    try  // !   Handling user-defined exception.
+    {
+        f3();
+    }
+    catch(InvalidAge)
+    {
+        cout<<"Invalid Age Exception"<<endl;
+    }
+    cout<<"\nProgram continues normally."<<endl;
+    return 0;
+}

@@ -24,7 +24,7 @@ class admin : public user
  };
 
 
- user *ptr=getuser();                // yha ptr base class ka isliye bana rhe h ki do child class h toh confusion na ho ki kiska chale aur sidhe base class ka chale
+ user *ptr=getuser();           // yha ptr base class ka isliye bana rhe h ki do child class h toh confusion na ho ki kiska chale aur sidhe base class ka chale
  ptr->show();                // virtual likh chuke h toh uska show chalerga jiska likha hoga
 
  ptr-newlearner();

@@ -13,13 +13,13 @@ class B : public A
 
 // pointer jis class type ka h uss class ke object ka address contain  karega 
 eg :=
-A *p;
+A *obj1;
 A x1;
-p= &x1;
+obj1= &x1;
 
 
 B x2;
-p= &x2;         // pointer parent class type ka h par child class ke object ka bhi address contain kr skta  h
+obj1= &x2;         // pointer parent class type ka h par child class ke object ka bhi address contain kr skta  h
 // upar dono class ke pointer ek type ke nhi h par a class wala pointer b class wale object ka ddress tbhi rakh payega agr a parent class ho
 
 
@@ -30,11 +30,6 @@ bas parent class ka pointer child class ke object ko point kr skta h
 Inheritance mein jo class upar hoti h wo generalized hoti h jo niche hoti h wo specialized hoti h 
 toh generalized ka pointer specialized ke object ko point ker skta h '
 
-
-
-
-
-
 'BASE CLASS POINTER CAN POINT TO ANY AN OBJECT OF ANY DESCENDANT CLASS BUT CAN ACCESS ONLY BASE CLASS MEMEBERS WHY ? '
 ans := EARLY BINDING is the reason as pointer child classs ke members ko point toh kr skta h
  par arrow operator se sirf members of base classs ko access kr skta h
@@ -43,18 +38,23 @@ kyunki arrow operator lagne ke baad early binding se compiler point krne wale ko
 
 
  eg::
-class A 
+ #include<iostream>
+using namespace std;
+
+class A
 {
 public:
 
-void f1()
-{
-    cout<<"f1 of A"<<endl;
-}
+    void f1()
+    {
+        cout<<"f1 of A"<<endl;
+    }
 };
 
-class B : public A 
+class B : public A
 {
+public:
+
     void f2()
     {
         cout<<"f2 of B"<<endl;
@@ -63,21 +63,38 @@ class B : public A
 
 int main()
 {
-    A *p;
-    B o2;
-    p=&o2;  
-    o2.f1();      // ye pehle b mein f1 ko dhundgea waha nhi milega tab jayega parent class mein
-    // reason :: A  due to early binding
-    // pointer o2 ko point kr rha h toh pointer ke through bhi access kr skte h 
-    p->f1();
-    p->f2();            // ye error dega kyunki pointer child class ke members ko access nhi kr skta 
+    A *obj1;          // Base class pointer
+    B obj2;           // Derived class object
 
-    o2.f2() ;       // B due to early binding
-    cout<<endl;
+    obj1 = &obj2;     // ! Allowed  A Base Class pointer can point to a Derived Class object.
+
+    obj2.f1();
+    // Compiler first searches class B for f1().
+    // B does not have f1(), so it moves to the Base Class A.
+    // A::f1() is found and executed.
+    // Reason: Early Binding
+
+    obj1->f1();
+    // Pointer is pointing to obj2 (Derived object),
+    // but the POINTER TYPE is A.
+    // During Early Binding, compiler checks the POINTER TYPE,
+    // not the actual object.
+    // Therefore it searches only inside class A.
+    // Hence A::f1() is called.
+
+    // ! obj1->f2();     ERROR
+    // Although obj1 points to an object of class B,
+    // its TYPE is still A*.
+    // Compiler searches only class A for f2().
+    // Since class A has no f2(), compilation fails.
+    // Base Class pointer can point to a Derived object,
+    // but it can access only Base Class members.
+
+    obj2.f2();
+    // Compiler first searches class B.
+    // f2() is present in B, so it is executed.
+    // Compiler never goes to class A.
+    // Reason: Early Binding
+
     return 0;
 }
-
-
-
-
-

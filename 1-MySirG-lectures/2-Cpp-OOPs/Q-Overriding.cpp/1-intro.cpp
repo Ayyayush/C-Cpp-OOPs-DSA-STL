@@ -102,3 +102,47 @@ class sports car : public car // ye car class ka user 2 h aur private proetcetd 
         //..  ye yha isliye bnaa rhe h kyunki ye sports car specific h na ki car 
     }
 }
+
+
+
+#include<iostream>
+using namespace std;
+
+class A
+{
+public:
+    void f1(){       cout<<"A::f1()"<<endl;   }
+};
+
+class B : public A
+{
+public:
+    void f1(int x)
+    { 
+     cout<<"B::f1(int)"<<endl;
+    }
+
+    void f2()
+    {
+        cout<<"B::f2()"<<endl;
+    }
+};
+
+int main()
+{
+    B obj;
+
+    // obj.f1(); ERROR
+    // Compiler first searches for f1() in class B.
+    // It finds the name "f1", so due to EARLY BINDING
+    // it DOES NOT search class A.
+    // But B has only f1(int), not f1().
+    // Hence, "No matching function" error.
+
+    obj.A::f1();      // Calls A::f1() explicitly using Scope Resolution
+
+    obj.f1(5);        // Calls B::f1(int) because matching function exists in B
+
+    obj.f2();         // Calls B::f2()
+    return 0;
+}

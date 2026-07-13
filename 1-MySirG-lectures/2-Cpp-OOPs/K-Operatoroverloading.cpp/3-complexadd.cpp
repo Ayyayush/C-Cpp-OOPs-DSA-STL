@@ -24,7 +24,9 @@ void /* membership label*/ Complex ::showData() // member functions
   cout << "Real" << a << " " << "Imaginary" << b;
 }
 
-Complex Complex::operator+(Complex C)            // 
+// ! ab hum operator overloading kr rhe h but class ke bahar 
+// ! class ke bahar h toh pehle toh scope resolution operator use hoga
+Complex Complex::operator+(Complex C)            //  ! pehla complex return type h dusra complex class name h
 // symbols ko as a function name use krne ke liye operator keyword likhna padega 
 {
   Complex temp;

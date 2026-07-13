@@ -14,10 +14,10 @@ public:
         b = y;
     }
 
-    // FRIEND FUNCTION
-   //   friend void f1(); // .... class ke andar hi declare karenge 
+    // ! FRIEND FUNCTION
+   //   friend void f1();                .... class ke andar hi declare karenge 
    // c1 wala syntax valid karane ke liye declaration change krna padega
-   // freind keyword bas declaration ke time hi lagta h ....defintion mein nhi lagta h 
+   // friend keyword bas declaration ke time hi lagta h ....defintion mein nhi lagta 
     friend void f1(complex);         // ✅ friend function ka sahi declaration
 
     // c3=5+c1; isko valid karane ke liye
@@ -29,7 +29,7 @@ public:
     // par friend function hamesha class ke bahar define hota hai
 };
 
-// ✅ friend function ko class ke baahar define karo bina "friend" keyword ke
+// ! ✅ friend function ko class ke baahar define karo bina "friend" keyword ke
 void f1(complex c)
 {
     //  cout<<a+b;
@@ -38,7 +38,7 @@ void f1(complex c)
     cout << c.a + c.b << endl;
 }
 
-// ✅ + operator overload for int + complex
+//! ✅ + operator overload for int + complex  at the same time it is friend function
 complex operator+(int k, complex c)
 {
     complex temp;

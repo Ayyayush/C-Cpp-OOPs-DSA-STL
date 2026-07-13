@@ -20,16 +20,18 @@ class complex
 
 //  COPY CONSTRUCTOR
 // copy constructor is invoked for newly created object which is initialised with object of same class
-   //  complex(complex C)
-   // NOTE
-    // YHA PE C BHI OBJECT H ISS LIYE ISKE LIYE BHI COPY CONSTRUCTOR CALL HO JAYEGA ISS LIYE KUCH AUR KRNA PADEGA KYUKNI YE INFINITE TIMES CHALEGA TOH ERROR 
-    // ISS LIYE OBJECT MAT BANAO USKA REFERENCE DE DO
+
+   // !  complex(complex C)      aise bnane mein kya problem h
+   // NOTE  // YHA PE C BHI OBJECT H ISS LIYE ISKE LIYE BHI COPY CONSTRUCTOR CALL HO JAYEGA ISS LIYE
+   // KUCH AUR KRNA PADEGA KYUKNI YE INFINITE TIMES CHALEGA TOH ERROR 
+
+   //! ISS LIYE OBJECT MAT BANAO USKA REFERENCE DE DO
      complex( complex &C)` 
    {
-     //a=c1.a;     aise nhi likh skte kyunki c1 main function mein bana h
+     //a=c1.a;     aise nhi likh skte kyunki c1 main function mein bana hua  object  yha wo exist nhi kr rha
       // a variable c4 ka h
       a=C.a;
-    b=C.b; 
+      b=C.b; 
 
    }
     
@@ -38,7 +40,7 @@ class complex
     {
        a=0;
        b=0;
-        cout<<"Hello"<<endl;
+       cout<<"Hello"<<endl;
     }
      
 
